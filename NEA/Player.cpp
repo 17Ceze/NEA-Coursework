@@ -20,6 +20,12 @@ void Player::initTexture()
 			std::cout << "Failed";
 		}
 		this->jumpingSound.setBuffer(this->pJumpingSound);
+
+		if (!this->pRunningSound.loadFromFile("Sprites and Textures/Running Sound.mp3"))
+		{
+			std::cout << "Failed";
+		}
+		this->runningSound.setBuffer(this->pRunningSound);
 }
 
 void Player::initSprite()
@@ -210,6 +216,7 @@ void Player::updateMovement()
 	{
 		if (leftKeyPressed())
 		{
+			this->runningSound.play();
 			this->move(-1.f, 0.f);
 			this->lookingLeft = true;
 
@@ -217,6 +224,7 @@ void Player::updateMovement()
 		}
 		else if (rightKeyPressed())
 		{
+			this->runningSound.play();
 			this->move(1.f, 0.f);
 			this->lookingLeft = false;
 

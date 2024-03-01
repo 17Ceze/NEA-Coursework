@@ -7,6 +7,7 @@
 void Game::initPlayer()
 {
 	this->player = new Player();
+
 }
 
 
@@ -34,10 +35,6 @@ void Game::initSounds()
 {
 	//Load the sound
 	if (!this->collectSound.loadFromFile("Sprites and Textures/Collect Sound.mp3"))
-	{
-		std::cout << "Failed";
-	}
-	if (!this->pRunningSound.loadFromFile("Sprites and Textures/Running Sound.mp3"))
 	{
 		std::cout << "Failed";
 	}

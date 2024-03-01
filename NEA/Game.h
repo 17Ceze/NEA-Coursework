@@ -23,9 +23,6 @@ private:
 
 	//Player
 	Player* player;
-	//Running
-	sf::Sound runningSound;
-	sf::SoundBuffer pRunningSound;
 	//Death
 	sf::Sound deathSound;
 	sf::SoundBuffer pDeathSound;

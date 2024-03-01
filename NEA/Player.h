@@ -26,6 +26,9 @@ private:
 	//Jumping
 	sf::Sound jumpingSound;
 	sf::SoundBuffer pJumpingSound;
+	//Running
+	sf::Sound runningSound;
+	sf::SoundBuffer pRunningSound;
 
 
 	// Player Physics 
