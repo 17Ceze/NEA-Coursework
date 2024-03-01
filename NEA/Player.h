@@ -85,6 +85,7 @@ public:
 	inline bool dashKeyPressed();
 	inline bool leftKeyPressed();
 	inline bool rightKeyPressed();
+	void playRunningSound();
 	void resetAnimationTimer();
 	void move(const float dir_x, const float dir_y);
 	void updatePhysics();

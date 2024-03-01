@@ -38,10 +38,17 @@ void Game::initSounds()
 	{
 		std::cout << "Failed";
 	}
-	if (!this->pDeathSound.loadFromFile("Sprites and Textures/Death Sound.mp3"))
+	if (!this->pDeathSound.loadFromFile("Sprites and Textures/Death sound.mp3"))
 	{
 		std::cout << "Failed";
 	}
+	this->deathSound.setBuffer(this->pDeathSound);
+
+	if (!this->levelEndBuffer.loadFromFile("Sprites and Textures/Level End Sound.mp3"))
+	{
+		std::cout << "Failed";
+	}
+	this->levelEndSound.setBuffer(this->levelEndBuffer);
 }
 
 void Game::initTilemap()
@@ -58,7 +65,7 @@ void Game::initTilemap()
 		{
 			this->tileMap->addTile(x, y, 0, sf::IntRect(0, 0, 64, 64));
 
-			if (y == mapHeight - 1 && x <= 1) 
+			if (y == mapHeight - 1 && x <= 1)
 			{
 				this->tileMap->addTile(x, y, 1, sf::IntRect(0, 0, 96, 32));
 			}
@@ -90,12 +97,14 @@ void Game::initCollectible()
 
 void Game::initPlatforms()
 {
+	//Create Platforms
 	this->plats.push_back(new Plat());
 	this->plats.back()->setPosition(150, 300);
 
 	this->plats.push_back(new Plat());
 	this->plats.back()->setPosition(600, 300);
 
+	//Create level end
 	this->levelEnd.push_back(new LevelEnd());
 	this->levelEnd.back()->setPosition(800, 240);
 }
@@ -156,7 +165,6 @@ void Game::initWindow()
 
 Game :: Game()
 {
-	//this->initMenuScreen();
 	this->initVariables();
 	this->initWindow();
 	this->initTextures();
@@ -166,6 +174,7 @@ Game :: Game()
 	this->initPlatforms();
 	this->initButton();
 	this->initTitleScreen();
+	this->initSounds();
 
 }
 
@@ -432,10 +441,13 @@ void Game::deathScreen()
 	this->popFrame = sf::IntRect(500, 20, 100, 40);
 	this->popUp.setTextureRect(this->popFrame);
 
+
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R))
 	{
-		this->player->setPosition(0, 500); //NOT DOCUMENTED YET THIS CHANGE
+		this->player->setPosition(0, 500); 
 		this->gameStates = GameStates::Playing;
+		this->deathSound.stop();
 	}
 }
 
@@ -520,6 +532,7 @@ void Game::updateCollision()
 		if (this->player->getGlobalBounds().intersects(this->levelEnd[i]->getGlobalBounds()))
 		{
 			this->gameStates = GameStates::LevelEnd;
+			this->levelEndSound.play();
 
 		}
 	}
@@ -533,6 +546,7 @@ void Game::updateCollision()
 			{
 			if (this->player->getGlobalBounds().intersects(tile->getGlobalbounds()))
 				{
+				this->deathSound.play();
 				this->gameStates = GameStates::Death;
 				}
 			}

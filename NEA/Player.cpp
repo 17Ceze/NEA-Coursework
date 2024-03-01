@@ -211,23 +211,38 @@ void Player::updateAnimations()
 void Player::updateMovement()
 {
 		//Move Player
+
 		
 	if (canDash)
 	{
 		if (leftKeyPressed())
 		{
-			this->runningSound.play();
+			
 			this->move(-1.f, 0.f);
 			this->lookingLeft = true;
-
-
+			if (this->runningSound.getStatus() != sf::Sound::Playing && canJump)
+			{
+				this->runningSound.play();
+			}
+ 
 		}
 		else if (rightKeyPressed())
 		{
-			this->runningSound.play();
+			
 			this->move(1.f, 0.f);
 			this->lookingLeft = false;
-
+			if (this->runningSound.getStatus() != sf::Sound::Playing && canJump)
+			{
+				this->runningSound.play();
+			}
+		
+		}
+		else 
+		{
+			if (this->runningSound.getStatus() == sf::Sound::Playing)
+			{
+				this->runningSound.stop();
+			}
 
 		}
 	}

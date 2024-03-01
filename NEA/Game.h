@@ -26,6 +26,9 @@ private:
 	//Death
 	sf::Sound deathSound;
 	sf::SoundBuffer pDeathSound;
+	//Level end
+	sf::Sound levelEndSound;
+	sf::SoundBuffer levelEndBuffer;
 
 
 	//Collectibles
