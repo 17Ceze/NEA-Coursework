@@ -90,7 +90,7 @@ private:
 	sf::Texture floor;
 	sf::Texture end;
 	Tilemap* tileMap;
-	const int mapWidth = 30;
+	const int mapWidth = 75;
 	const int mapHeight = 10;
 	
 

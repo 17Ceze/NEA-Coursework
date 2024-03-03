@@ -65,13 +65,13 @@ void Game::initTilemap()
 		{
 			this->tileMap->addTile(x, y, 0, sf::IntRect(0, 0, 64, 64));
 
-			if (y == mapHeight - 1 && x <= 1)
+			if (y == mapHeight - 1 /* && x <= 1*/)
 			{
 				this->tileMap->addTile(x, y, 1, sf::IntRect(0, 0, 96, 32));
 			}
 			else if (y == mapHeight - 1 && x >= 1)
 			{
-				this->tileMap->addDamagingTile(x, y, 0, sf::IntRect(0, 0, 64, 64));
+				//this->tileMap->addDamagingTile(x, y, 0, sf::IntRect(0, 0, 64, 64));
 			}
 
 		}
@@ -99,14 +99,17 @@ void Game::initPlatforms()
 {
 	//Create Platforms
 	this->plats.push_back(new Plat());
-	this->plats.back()->setPosition(150, 300);
+	this->plats.back()->setPosition(150, 400);
 
 	this->plats.push_back(new Plat());
 	this->plats.back()->setPosition(600, 300);
 
+	this->plats.push_back(new Plat());
+	this->plats.back()->setPosition(1200, 300);
+
 	//Create level end
-	this->levelEnd.push_back(new LevelEnd());
-	this->levelEnd.back()->setPosition(800, 240);
+	//this->levelEnd.push_back(new LevelEnd());
+	//this->levelEnd.back()->setPosition(800, 240);
 }
 
 void Game::initButton()
